@@ -1,4 +1,3 @@
-import config from 'config';
 import { authHeader } from '../_helpers';
 
 export const userService = {
@@ -9,6 +8,10 @@ export const userService = {
     getById,
     update,
     delete: _delete
+};
+
+const config = {
+    apiUrl: 'https://fake:3000',
 };
 
 function login(username, password) {
@@ -88,7 +91,7 @@ function handleResponse(response) {
             if (response.status === 401) {
                 // auto logout if 401 response returned from api
                 logout();
-                location.reload(true);
+                window.location.reload(true);
             }
 
             const error = (data && data.message) || response.statusText;
